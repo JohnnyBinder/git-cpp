@@ -4,7 +4,9 @@
 using namespace std;
 
 bool OneAway(const string& s1, const string& s2) {
-	if (s1.size() - s2.size() > 1 || static_cast<int>(s1.size() - s2.size()) < -1) {
+	// The subtraction has to be casted to an int or the < operator will compare size_t < int, thereby converting the int
+	// to a positive value which will cause problems if the subtraction returns a size_t value of 0
+	if (static_cast<int>(s1.size() - s2.size()) > 1 || static_cast<int>(s1.size() - s2.size()) < -1) {
 		return false;
 	}
 
